@@ -1,0 +1,65 @@
+{% extends 'home.html' %}
+{% block content %}
+    <h1>Hello {{ obj.first_name }}, Welcome to Our WebPage</h1>
+
+    <form method="POST" action="">
+        <h2>This is your Personal Info.</h2>
+        <table>
+            <tr>
+                <td>{{ form.username.label }}</td>
+                <td>{{ obj.username }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.first_name.label }}</td>
+                <td>{{ form.first_name(value=obj.first_name if obj.first_name else '') }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.last_name.label }}</td>
+                <td>{{ obj.last_name }}</td>
+            </tr>
+            <tr>
+                <td>{{ form.email.label }}</td>
+                <td>{{ obj.email }}</td>
+            </tr>
+            {% for loc in obj.location %}
+                <tr>
+                    <td>{{ form.country.label }}</td>
+                    <td>{{ loc.country }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.country_code.label }}</td>
+                    <td>{{ loc.country_code }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.region.label }}</td>
+                    <td>{{ loc.region }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.city.label }}</td>
+                    <td>{{ loc.city }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.address.label }}</td>
+                    <td>{{ loc.address }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        <table>
+            <tr>
+                <td>{{ form.phone_code.label }}</td>
+                <td>{{ form.phone_number.label }}</td>
+            </tr>
+            {% for phone in obj.phones %}
+                <tr>
+                    <td>{{ phone.phone_code }}</td>
+                    <td>{{ phone.number }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </form><br>
+<!--    <br><a href="{{ url_for('logout') }}">Press here to Logout</a>-->
+
+    <form action="{{ url_for('logout') }}" method="POST">
+        <button type="submit">Logout</button>
+    </form>
+{% endblock %}

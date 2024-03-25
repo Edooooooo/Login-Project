@@ -1,0 +1,114 @@
+{% extends 'home.html' %}
+{% block content %}
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <table>
+            <tr>
+                <td>
+                    {{ form.first_name.label }}
+                </td>
+                <td>
+                    {{ form.first_name(value=obj.first_name if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.last_name.label }}
+                </td>
+                <td>
+                    {{ form.last_name(value=obj.last_name if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.email.label }}
+                </td>
+                <td>
+                    {{ form.email(value=obj.email if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.username.label }}
+                </td>
+                <td>
+                    {{ form.username(value=obj.username if obj.first_name else '') }}
+                </td>
+            </tr>
+            <!-- Location Information -->
+            <tr>
+                <td>
+                    {{ form.country.label }}
+                </td>
+                <td>
+                    {{ form.country(choice=country_list, value=obj.location[0].country if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.country_code.label }}
+                </td>
+                <td>
+                    {{ form.country_code(value=obj.location[0].country_code if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.region.label }}
+                </td>
+                <td>
+                    {{ form.region(value=obj.location[0].region if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.city.label }}
+                </td>
+                <td>
+                    {{ form.city(value=obj.location[0].city if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.address.label }}
+                </td>
+                <td>
+                    {{ form.address(value=obj.location[0].address if obj.first_name else '') }}
+                </td>
+            </tr>
+            <!-- Phone Information -->
+            <tr>
+                <td>
+                    {{ form.phone_code.label }}
+                </td>
+                <td>
+                    {{ form.phone_code(value=obj.phones[0].phone_code if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.phone_number.label }}
+                </td>
+                <td>
+                    {{ form.phone_number(value=obj.phones[0].number if obj.first_name else '') }}
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    {{ form.password.label }}
+                </td>
+                <td>
+                    {{ form.password(value=obj.password) }}
+                </td>
+            </tr>
+        </table><br>
+        {{ form.submit }}
+        <ul class="errors">
+                {% for error in form.errors: %}
+                    <li>Error with {{ error }}</li>
+                {% endfor %}
+        </ul>
+    </form>
+
+    <a href="{{ url_for('login') }}">Already have an account? Log In</a>
+{% endblock %}
