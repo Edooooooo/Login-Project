@@ -234,6 +234,7 @@ def register():
 
     return render_template('register.html', form=form, obj=new_user, title="Register Page", country_list=choice)
 
+# jhfyufyu
 
 @app.route('/request_user_list', methods=["GET", "POST"])
 def request_user_list():
